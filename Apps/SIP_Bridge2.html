@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cesium App</title>
+    <script src="../Build/CesiumUnminified/Cesium.js"></script>
+    <link rel="stylesheet" type="text/css" href="../Build/CesiumUnminified/Widgets/widgets.css">
+    <link rel="stylesheet" type="text/css" href="style_SIP1.css">
+    <meta charset="UTF-8">
+</head>
+<body>
+    <!-- 左側の固定フレーム -->
+    <div id="leftPanel">
+        <!-- タイルセットの制御 -->
+        <div id="tilesetControl">
+          <input type="checkbox" id="tilesetCheckbox" checked>
+          <label for="tilesetCheckbox">タイルセットの表示</label>
+        </div>
+
+        <!-- 画像オーバーレイボタン -->
+        <button id="overlayImageButton">Overlay Image</button>
+      
+        <!-- 新しいプルダウンメニュー -->
+        <div id="typeSelectDiv">
+          <select id="typeSelect">
+            <option value="" disabled selected>橋梁か道路を選択</option>
+            <option value="bridge">橋梁</option>
+            <option value="road">道路</option>
+          </select>
+        </div>
+      
+        <!-- 橋梁と道路のプルダウンメニュー（初期状態では非表示） -->
+        <div id="bridgeSelectDiv" style="display:none;">
+          <select id="bridgeSelect">
+            <option value="" disabled selected>モデルを選択</option>
+            <!-- optionsはJavaScriptで追加 -->
+          </select>
+        </div>
+        <div id="roadSelectDiv" style="display:none;">
+          <select id="roadSelect">
+            <option value="" disabled selected>モデルを選択</option>
+            <!-- optionsはJavaScriptで追加 -->
+          </select>
+        </div>
+
+        <!-- 写真のプルダウンメニュー（初期状態では表示） -->
+        <div id="photoSelectDiv">
+          <select id="photoSelect">
+            <option value="" disabled selected>写真を選択</option>
+            <!-- optionsはJavaScriptで追加 -->
+          </select>
+        </div>
+
+        <!-- Reference Data プルダウンメニューとジャンプボタン -->
+        <div id="referenceDataDiv" style="display:none;">
+          <select id="referenceDataSelect">
+            <option value="" disabled selected>Reference Dataを選択</option>
+            <!-- optionsはJavaScriptで追加 -->
+          </select>
+          <button id="jumpToReferenceData">Jump</button>
+        </div>
+      
+        <!-- テキストボックス -->
+        <div id="inputFields">
+          Longitude: <input type="text" id="longitude" size="10"><br>
+          Latitude: <input type="text" id="latitude" size="10"><br>
+          Height: <input type="text" id="height" size="5"><br>
+          Angle: <input type="text" id="angle" size="5"><br>
+          Pitch: <input type="text" id="pitch" size="5"><br>
+          Roll: <input type="text" id="roll" size="5"><br>
+        </div>
+      
+        <!-- Updateボタン -->
+        <button id="updateButton">Update</button>
+        <button id="updateJSONButton">Update JSON</button>  <!-- ここを変更 -->
+
+        <!-- KMLファイルの選択と読み込みボタン -->
+        <div id="kmlControl">
+            <input type="file" id="kmlFileInput" accept=".kml">
+            <button id="loadKmlButton">Load KML</button>
+        </div>
+  
+      </div>
+
+    <div id="cesiumContainer"></div>
+    <script>
+        Cesium.Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI1NTgwNWNhMi0wYzBkLTQ3NDMtODVlOC0wMGE1NzkzYzA4YTMiLCJpZCI6MTY4NDgwLCJpYXQiOjE2OTU2NjkzNTF9.T8r1Lw78vQgKlib1gI1Gxvv8zn9CE2OCiX4OthIIfpg";
+    </script>
+    <script type="module" src="main_SIP2.js"></script>
+</body>
+</html>
