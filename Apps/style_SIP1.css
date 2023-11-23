@@ -1,0 +1,49 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#cesiumContainer {
+  position: absolute;
+  top: 0;
+  left: 300px;  /* 左側の固定フレームの幅に合わせて調整 */
+  height: 100%;
+  width: calc(100% - 300px);  /* 左側の固定フレームの幅を考慮 */
+  z-index: 0;
+}
+
+#bridgeControlToolbar {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1;
+}
+
+#roadControlToolbar {
+  position: absolute;
+  top: 100px;  /* 位置を変更 */
+  left: 10px;
+  z-index: 1;
+}
+
+#leftPanel {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 300px;  /* 幅を調整 */
+  height: 100%;
+  background: linear-gradient(to bottom, #003366, #006633);
+  color: #ffffff;
+  border-right: 2px solid #999999;
+  box-shadow: 0px 0px 5px #333333;
+  overflow-y: auto;  /* 縦スクロールを有効にする */
+  z-index: 2;  /* z-indexを調整して他の要素より前に表示 */
+}
+
+#referenceDataDiv {
+    margin-top: 20px;  /* 上部とのマージンを設定 */
+    padding: 10px;  /* 内側のパディングを設定 */
+  }

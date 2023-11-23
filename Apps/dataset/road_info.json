@@ -1,0 +1,37 @@
+{
+    "roads": [
+      {
+        "name": "139.6905_35.7372",
+        "modelUrl": "./dataset/glbfiles/road/Scaniverse 2023-09-28 161919.glb",
+        "coordinates": {
+          "longitude": 139.6905038,
+          "latitude": 35.73729312
+        },
+        "height": 10,
+        "angle": 0,
+        "pitch": 0,
+        "roll": 0,
+        "referenceData": [
+          {
+            "name": "損傷詳細",
+            "type": "image",
+            "url": "https://www.asufarutokoji110.com/wp-content/uploads/2019/01/6e2b7ca885cf4eee2ad108caa8da8079_s.jpg"
+          }
+        ]
+      },
+      {
+        "name": "140.6905_35.7372",
+        "modelUrl": "./dataset/glbfiles/road/Scaniverse 2023-09-28 161919.glb",
+        "coordinates": {
+          "longitude": 140.6905038,
+          "latitude": 35.73729312
+        },
+        "height": 10,
+        "angle": 0,
+        "pitch": 0,
+        "roll": 0,
+        "referenceData": []
+      }
+    ]
+  }
+  

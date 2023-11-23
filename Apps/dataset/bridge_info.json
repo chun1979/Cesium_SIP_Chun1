@@ -1,0 +1,55 @@
+{
+    "bridges": [
+      {
+        "name": "荻野目橋",
+        "modelUrl": "./dataset/glbfiles/bridges/oginome.glb",
+        "coordinates": {
+          "longitude": 140.51704,
+          "latitude": 37.22656
+        },
+        "height": 506.6,
+        "angle": 12,
+        "pitch": 0,
+        "roll": 0,
+        "referenceData": [
+          {
+            "name": "H30点検調書",
+            "type": "pdf",
+            "url": "./dataset/report/oginome/chosho_ex1.pdf"
+          },
+          {
+            "name": "設計図面",
+            "type": "image",
+            "url": "./dataset/images/oginome/drawing.jpg"
+          }
+        ]
+      },
+      {
+        "name": "テスト橋",
+        "modelUrl": "./dataset/glbfiles/bridges/oginome.glb",
+        "coordinates": {
+          "longitude": 141.517031,
+          "latitude": 37.226582
+        },
+        "height": -1.2,
+        "angle": 12,
+        "pitch": 0,
+        "roll": 0,
+        "referenceData": []
+      },
+      {
+        "name": "不動橋",
+        "modelUrl": "./dataset/glbfiles/bridges/不動橋.glb",
+        "coordinates": {
+          "longitude": 139.670145,
+          "latitude": 35.72503
+        },
+        "height": 70.5,
+        "angle": 62,
+        "pitch": 0,
+        "roll": 0,
+        "referenceData": []
+      }
+    ]
+  }
+  
