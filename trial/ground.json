@@ -1,0 +1,29 @@
+{
+    "grounds": [
+      {
+        "id": "3568913916917",
+        "geology": "Sandstone",
+        "latitude": 35.689139,
+        "longitude": 139.16917
+      },
+      {
+        "id": "3469371355023",
+        "geology": "Clay",
+        "latitude": 34.693713,
+        "longitude": 135.5023
+      },
+      {
+        "id": "3501161357681",
+        "geology": "Gravel",
+        "latitude": 35.011613,
+        "longitude": 135.7681
+      },
+      {
+        "id": "4306211413544",
+        "geology": "Limestone",
+        "latitude": 43.062114,
+        "longitude": 141.3544
+      }
+    ]
+  }
+  
