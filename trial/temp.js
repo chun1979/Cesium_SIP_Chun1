@@ -184,13 +184,13 @@ document.addEventListener('DOMContentLoaded', function() {
         var groundCheckbox = document.getElementById('groundCheckbox');
 
         if (bridgeCheckbox.checked) {
-            loadData('bridge.json', 'bridge');
+            loadData('https://chun1979.github.io/Cesium_SIP_Chun1/trial/bridge.json', 'bridge');
         }
         if (roadCheckbox.checked) {
-            loadData('road.json', 'road');
+            loadData('https://chun1979.github.io/Cesium_SIP_Chun1/trial/road.json', 'road');
         }
         if (groundCheckbox.checked) {
-            loadData('ground.json', 'ground');
+            loadData('https://chun1979.github.io/Cesium_SIP_Chun1/trial/ground.json', 'ground');
         }
 
         popupWindow.style.display = 'none';
