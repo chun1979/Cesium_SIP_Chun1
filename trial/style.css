@@ -45,7 +45,15 @@ body, html {
     height: 100vh;
     float: left;
     background-color: #e0e0e0;
+    position: relative; /* これを追加 */
 }
+
+
+#cesiumContainer img {
+    width: 100%;
+    height: 100%;
+}
+
 
 #itemsList {
     width: 90%; /* 必要に応じて調整 */
@@ -168,4 +176,16 @@ body, html {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
+}
+
+.overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: large;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    text-align: center;
 }

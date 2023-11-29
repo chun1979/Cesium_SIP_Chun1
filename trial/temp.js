@@ -11,20 +11,56 @@ document.addEventListener('DOMContentLoaded', function() {
     var selectedItem;
 
     var menuItems = document.querySelectorAll('#contextMenu li');
-    
+        
+    function mapModelToMenuItemId(model) {
+        var idMap = {
+            'sfmmodel': 'sfmModel',
+            'pointcloud': 'pointCloud',
+            'bimcim': 'bimCim',
+            'femmodel': 'femModel'
+        };
+        return idMap[model.toLowerCase()] || model;
+    }
+
+    // コンテキストメニュー項目のIDと対応するデータ属性名のマッピング
+    var menuItemToDataAttribute = {
+        'sfmModel': 'data-sfmmodel',
+        'pointCloud': 'data-pointcloud',
+        'bimCim': 'data-bimcim',
+        'femModel': 'data-femmodel'
+    };
+
+    // 各モデル項目に対するクリックイベントハンドラを設定
+    Object.keys(menuItemToDataAttribute).forEach(function(menuItemId) {
+        var menuItem = document.getElementById(menuItemId);
+        menuItem.addEventListener('click', function() {
+            // 選択されたリストアイテムに対応するモデルのデータ属性を更新
+            var dataAttribute = menuItemToDataAttribute[menuItemId];
+            if (selectedItem && selectedItem.hasAttribute(dataAttribute)) {
+                // チェックを移動
+                updateCheckmark(menuItem);
+            }
+        });
+    });
+
+
     // チェックを追加または削除する関数
     function updateCheckmark(selectedItem) {
         menuItems.forEach(function(item) {
-            var checkmark = item.querySelector('.checkmark');
-            if (!checkmark) {
-                checkmark = document.createElement('span');
-                checkmark.className = 'checkmark';
-                checkmark.textContent = '✔ ';
-                item.insertBefore(checkmark, item.firstChild);
+            // チェックを追加する対象を限定する
+            if (item.id === 'sfmModel' || item.id === 'pointCloud' || item.id === 'bimCim' || item.id === 'femModel') {
+                var checkmark = item.querySelector('.checkmark');
+                if (!checkmark) {
+                    checkmark = document.createElement('span');
+                    checkmark.className = 'checkmark';
+                    checkmark.textContent = '✔ ';
+                    item.insertBefore(checkmark, item.firstChild);
+                }
+                checkmark.style.display = (item === selectedItem) ? '' : 'none';
             }
-            checkmark.style.display = (item === selectedItem) ? '' : 'none';
         });
     }
+    
 
     // 各メニュー項目のクリックイベントを設定
     menuItems.forEach(function(item) {
@@ -60,30 +96,54 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-
+    
     document.getElementById('itemsList').addEventListener('contextmenu', function(event) {
         event.preventDefault();
-        contextMenu.style.top = event.pageY + 'px';
-        contextMenu.style.left = event.pageX + 'px';
-        contextMenu.style.display = 'block';
-
         var target = event.target.closest('[data-category]');
         if (!target) return;
+    
         var latitude = target.getAttribute('data-latitude');
         var longitude = target.getAttribute('data-longitude');
-
-        selectedItem = target;
+    
+        // コンテキストメニューの位置を設定
         contextMenu.style.top = event.pageY + 'px';
         contextMenu.style.left = event.pageX + 'px';
         contextMenu.style.display = 'block';
-
+    
+        // 選択されたアイテムの初期モデルにチェックを入れる
+        // 初期モデルまたは現在選択されているモデルに基づいてチェックを更新
+        var initialModel = target.getAttribute('data-initialmodel');
+        var initialModelId  = mapModelToMenuItemId(initialModel);
+        updateCheckmark(document.getElementById(initialModelId));
+    
+        // 各モデルがnullの場合、対応するメニュー項目を非アクティブにする
+        ['sfmModel', 'pointCloud', 'bimCim', 'femModel'].forEach(function(modelId) {
+            var modelPath = target.getAttribute('data-' + modelId.toLowerCase());
+            var menuItem = document.getElementById(modelId);
+            if (modelPath === "") {
+                menuItem.classList.add('inactive');
+            } else {
+                menuItem.classList.remove('inactive');
+                menuItem.onclick = function() {
+                    // 選択されたモデルをリストアイテムのdata-initialmodelに更新
+                    target.setAttribute('data-initialmodel', modelId);
+                    updateCheckmark(menuItem);
+                };
+            }
+                    
+        });
+        
+    
+        // ここに移動のクリックイベント
         moveTo.onclick = function() {
             alert('Latitude: ' + latitude + ', Longitude: ' + longitude);
         };
-
+    
+        // 点検調書のクリックイベント
         openReport.onclick = function() {
             window.open('https://www.yahoo.co.jp/', '_blank');
         };
+
     });
 
     document.addEventListener('click', function() {
@@ -174,6 +234,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var applyButton = document.getElementById('applyButton');
     var latStart, latEnd, lonStart, lonEnd;
 
+//**************************************************************************************** */
     applyButton.addEventListener('click', function() {
         latStart = parseFloat(document.getElementById('latitudeStart').value);
         latEnd = parseFloat(document.getElementById('latitudeEnd').value);
@@ -197,9 +258,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     function loadData0(jsonFile, category) {
-        fetch(jsonFile)
-            .then(response => response.json())
-            .then(data => {
+        fetch(jsonFile)// 指定されたJSONファイルを非同期に取得
+            .then(response => response.json())// レスポンスをJSON形式に変換
+            .then(data => {// 取得したデータのうち、指定されたカテゴリに属するアイテムを処理
                 data[category + 's'].forEach(function(item) {
                     if (item.latitude >= latStart && item.latitude <= latEnd && 
                         item.longitude >= lonStart && item.longitude <= lonEnd) {
@@ -210,19 +271,6 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .catch(error => console.error('Error:', error));
     }
-    
-
-    var showData = document.getElementById('showData');
-    var dataPopup = document.getElementById('dataPopup');
-
-    addButton.addEventListener('click', function() {
-        
-        var selectedCategory = categorySelect.value;
-        var selectedText = detailsSelect.options[detailsSelect.selectedIndex].text;
-        if (selectedText !== 'Select Model') {
-            addItemToList(selectedCategory, selectedText);
-        }
-    });
 
     function addItemToList(category, item) {
         var listItem = document.createElement('div');
@@ -230,6 +278,13 @@ document.addEventListener('DOMContentLoaded', function() {
         listItem.setAttribute('data-id', item.id);
         listItem.setAttribute('data-latitude', item.latitude);
         listItem.setAttribute('data-longitude', item.longitude);
+        listItem.setAttribute('data-initialmodel', item.initialmodel || "");
+
+        // 各モデルへのパスを属性として追加
+        listItem.setAttribute('data-sfmmodel', item.model.sfmmodel || "");
+        listItem.setAttribute('data-pointcloud', item.model.pointcloud || "");
+        listItem.setAttribute('data-bimcim', item.model.bimcim || "");
+        listItem.setAttribute('data-femmodel', item.model.femmodel || "");
     
         var checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
@@ -261,5 +316,44 @@ document.addEventListener('DOMContentLoaded', function() {
     
         itemsList.appendChild(listItem);
     }
+//****************************************************************************************
+
+    var showData = document.getElementById('showData');
+    var dataPopup = document.getElementById('dataPopup');
+
+    addButton.addEventListener('click', function() {
+        var selectedCategoryIndex = categorySelect.selectedIndex;
+        var selectedDetailsIndex = detailsSelect.selectedIndex-1;//最初のindexが"Select Model"のため
+    
+        // categorySelectの選択された値を小文字に変換
+        var category = categorySelect.options[selectedCategoryIndex].value.toLowerCase();
+    
+        // JSONファイルの名前を決定（例：'bridge.json'）
+        var jsonFile = category + '.json';
+    
+        fetch(jsonFile)
+            .then(response => response.json())
+            .then(data => {
+                // detailsSelectの選択に基づいたアイテムを取得
+                var item = data[category + 's'][selectedDetailsIndex];
+                if (item) {
+                    // アイテムをリストに追加
+                    //console.log(item)
+                    addItemToList(category, item);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    });
+
+    /*addButton.addEventListener('click', function() {        
+        var selectedCategory = categorySelect.value;
+        var selectedText = detailsSelect.options[detailsSelect.selectedIndex].text;
+        if (selectedText !== 'Select Model') {
+            console.log(selectedText)
+            addItemToList(selectedCategory, selectedText);
+        }
+    });*/
+
+
     
 });

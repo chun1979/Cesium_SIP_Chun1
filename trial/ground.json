@@ -4,25 +4,53 @@
         "id": "3568913916917",
         "geology": "Sandstone",
         "latitude": 35.689139,
-        "longitude": 139.16917
+        "longitude": 139.16917,
+        "model": {
+          "sfmmodel": "path/to/sfmmodel_groundA",
+          "pointcloud": "path/to/pointcloud_groundA",
+          "bimcim": "path/to/bimcim_groundA",
+          "femmodel": "path/to/femmodel_groundA"
+        },
+        "initialmodel": "sfmmodel"
       },
       {
         "id": "3469371355023",
         "geology": "Clay",
         "latitude": 34.693713,
-        "longitude": 135.5023
+        "longitude": 135.5023,
+        "model": {
+          "sfmmodel": "path/to/sfmmodel_groundB",
+          "pointcloud": "path/to/pointcloud_groundB",
+          "bimcim": "path/to/bimcim_groundB",
+          "femmodel": null
+        },
+        "initialmodel": "pointcloud"
       },
       {
         "id": "3501161357681",
         "geology": "Gravel",
         "latitude": 35.011613,
-        "longitude": 135.7681
+        "longitude": 135.7681,
+        "model": {
+          "sfmmodel": "path/to/sfmmodel_groundC",
+          "pointcloud": "path/to/pointcloud_groundC",
+          "bimcim": null,
+          "femmodel": "path/to/femmodel_groundC"
+        },
+        "initialmodel": "femmodel"
       },
       {
         "id": "4306211413544",
         "geology": "Limestone",
         "latitude": 43.062114,
-        "longitude": 141.3544
+        "longitude": 141.3544,
+        "model": {
+          "sfmmodel": "path/to/sfmmodel_groundD",
+          "pointcloud": "path/to/pointcloud_groundD",
+          "bimcim": "path/to/bimcim_groundD",
+          "femmodel": "path/to/femmodel_groundD"
+        },
+        "initialmodel": "bimcim"
       }
     ]
   }

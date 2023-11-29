@@ -6,7 +6,14 @@
         "latitude": 35.6895,
         "longitude": 139.6917,
         "length": 200,
-        "integrity": 90
+        "integrity": 90,
+        "model": {
+          "sfmmodel": "path/to/sfmmodelA",
+          "pointcloud": "path/to/pointcloudA",
+          "bimcim": "path/to/bimcimA",
+          "femmodel": "path/to/femmodelA"
+        },
+        "initialmodel": "sfmmodel"
       },
       {
         "name": "Bridge B",
@@ -14,7 +21,14 @@
         "latitude": 34.6937,
         "longitude": 135.5023,
         "length": 150,
-        "integrity": 85
+        "integrity": 85,
+        "model": {
+          "sfmmodel": "path/to/sfmmodelB",
+          "pointcloud": "path/to/pointcloudB",
+          "bimcim": null,
+          "femmodel": null
+        },
+        "initialmodel": "pointcloud"
       },
       {
         "name": "Bridge C",
@@ -22,7 +36,14 @@
         "latitude": 35.0116,
         "longitude": 135.7681,
         "length": 120,
-        "integrity": 80
+        "integrity": 80,
+        "model": {
+          "sfmmodel": "path/to/sfmmodelC",
+          "pointcloud": null,
+          "bimcim": "path/to/bimcimC",
+          "femmodel": null
+        },
+        "initialmodel": "bimcim"
       },
       {
         "name": "Bridge D",
@@ -30,8 +51,16 @@
         "latitude": 43.0621,
         "longitude": 141.3544,
         "length": 180,
-        "integrity": 95
+        "integrity": 95,
+        "model": {
+          "sfmmodel": "path/to/sfmmodelD",
+          "pointcloud": null,
+          "bimcim": null,
+          "femmodel": "path/to/femmodelD"
+        },
+        "initialmodel": "femmodel"
       }
+
     ]
   }
   
