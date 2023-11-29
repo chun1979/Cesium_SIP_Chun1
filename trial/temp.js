@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var openReport = document.getElementById('openReport');
     var showData = document.getElementById('showData');
     var dataPopup = document.getElementById('dataPopup');
-    var selectedItem;
+    //var selectedItem;
 
     var menuItems = document.querySelectorAll('#contextMenu li');
         
@@ -109,6 +109,9 @@ document.addEventListener('DOMContentLoaded', function() {
         contextMenu.style.top = event.pageY + 'px';
         contextMenu.style.left = event.pageX + 'px';
         contextMenu.style.display = 'block';
+
+        // コンテキストメニューが表示されたアイテムをselectedItemに設定
+        selectedItem = target;
     
         // 選択されたアイテムの初期モデルにチェックを入れる
         // 初期モデルまたは現在選択されているモデルに基づいてチェックを更新
@@ -144,15 +147,39 @@ document.addEventListener('DOMContentLoaded', function() {
             window.open('https://www.yahoo.co.jp/', '_blank');
         };
 
+        showData.onclick = function() {
+            // データポップアップの内容をクリア
+            dataTable.innerHTML = '';
+    
+            if (selectedItem) {
+                // データを表形式で表示
+                var rowId = dataTable.insertRow();
+                rowId.insertCell().textContent = 'ID';
+                rowId.insertCell().textContent = selectedItem.getAttribute('data-id');
+    
+                var rowLat = dataTable.insertRow();
+                rowLat.insertCell().textContent = '緯度';
+                rowLat.insertCell().textContent = selectedItem.getAttribute('data-latitude');
+    
+                var rowLon = dataTable.insertRow();
+                rowLon.insertCell().textContent = '経度';
+                rowLon.insertCell().textContent = selectedItem.getAttribute('data-longitude');
+            }
+    
+            dataPopup.style.display = 'block';
+        };
+    
+
     });
 
     document.addEventListener('click', function() {
         contextMenu.style.display = 'none';
     });
 
-    showData.addEventListener('click', function() {
+    /*showData.addEventListener('click', function() {
         // データポップアップの内容をクリア
         dataTable.innerHTML = '';
+        console.log(selectedItem)
 
         if (selectedItem) {
             // データを表形式で表示
@@ -172,7 +199,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         dataPopup.style.display = 'block';
-    });
+    });*/
 
 
     categorySelect.addEventListener('change', function() {
