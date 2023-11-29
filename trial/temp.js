@@ -119,13 +119,13 @@ document.addEventListener('DOMContentLoaded', function() {
         var selectedCategory = categorySelect.value;
         switch(selectedCategory) {
             case 'bridge':
-                loadData('bridge.json', 'bridges', 'name');
+                loadData('https://chun1979.github.io/Cesium_SIP_Chun1/trial/bridge.json', 'bridges', 'name');
                 break;
             case 'road':
-                loadData('road.json', 'roads', 'id');
+                loadData('https://chun1979.github.io/Cesium_SIP_Chun1/trial/road.json', 'roads', 'id');
                 break;
             case 'ground':
-                loadData('ground.json', 'grounds', 'id');
+                loadData('https://chun1979.github.io/Cesium_SIP_Chun1/trial/ground.json', 'grounds', 'id');
                 break;
         }
     });
