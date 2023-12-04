@@ -1,11 +1,5 @@
 Apps/HelloWorld.html
 Apps/Sandcastle/ThirdParty/**
-Build/**
-Documentation/**
-Source/**
-Specs/jasmine/**
-ThirdParty/**
-Tools/**
 Apps/Sandcastle/jsHintOptions.js
 Apps/Sandcastle/gallery/gallery-index.js
 index.html
@@ -13,11 +7,7 @@ index.release.html
 
 
 # packages/engine
-packages/engine/Build/**
-packages/engine/Source/Scene/GltfPipeline/**
-packages/engine/Source/Shaders/**
-packages/engine/Source/ThirdParty/**
+node_modules/
 
 # packages/widgets
-packages/widgets/Build/**
-packages/widgets/Source/ThirdParty/**
+public/
