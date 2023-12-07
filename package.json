@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "setup": "cp -r node_modules/cesium/Build/Cesium/ public/"
+    "setup": "cp -r node_modules/cesium/Build/Cesium/ public/",
+    "setup:win": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command ./setup.ps1"
   },
   "devDependencies": {
     "eslint": "^8.55.0",
